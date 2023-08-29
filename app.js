@@ -7,15 +7,18 @@ const cookieParser = require('cookie-parser');
 dotenv.config();
 
 const userRoute = require('./routes/userRoutes');
+const customerRoute = require('./routes/customerRoutes');
 
 const app = express();
 
+app.set('trust proxy', true);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({ credentials: true }));
 app.use(cookieParser());
 
 app.use("/api/user", userRoute);
+app.use("/api/customer", customerRoute);
 
 app.use(express.static(path.join(__dirname, "./client/build/")));
 
