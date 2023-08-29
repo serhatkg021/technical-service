@@ -21,7 +21,7 @@ exports.getUserByPhone = async (userPhone) => {
 }
 
 exports.updateUserById = async (id, user) => {
-    return await UserModel.findByIdAndUpdate(id, user, { new: true },);
+    return await UserModel.findByIdAndUpdate(id, user, { new: true });
 }
 
 exports.deleteUserById = async (id) => {
