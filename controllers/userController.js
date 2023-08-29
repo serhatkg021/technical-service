@@ -29,14 +29,15 @@ exports.singUpUser = async (req, res) => {
 
         await userService.createUser({
             name,
-            surName: surname,
-            phone, email: email.toLowerCase(),
+            surname,
+            phone,
+            email: email.toLowerCase(),
             password: bcrypt.hashSync(password, salt)
         });
 
         return res.status(201).json({
             success: true,
-            message: `${name} kullanıcı kayıt oldu`
+            message: `${name} kullanıcı kayıt oldu.`
         });
 
     }
@@ -63,21 +64,27 @@ exports.loginUser = async (req, res) => {
             if (bcrypt.compareSync(password, user.password)) {
                 const newToken = tokenController.createToken({
                     name: user.name,
-                    surName: user.surName,
+                    surname: user.surname,
                     phone: user.phone,
                     email: user.email,
                     id: user._id
                 });
 
+                await userService.updateUserById(user._id, { '$set': { 'lastLogonDate': Date.now(), 'lastLogonIpAdress': req.ip } });
+
                 return res.status(200).json({
                     success: true,
-                    message: `${user.name} ${user.surName} kullanıcısı giriş yaptı`,
+                    message: `${user.name} ${user.surname} kullanıcısı giriş yaptı.`,
                     data: {
                         id: user._id,
                         name: user.name,
-                        surName: user.surName,
+                        surname: user.surname,
                         phone: user.phone,
                         email: user.email,
+                        lastLogonIpAdress: user.lastLogonIpAdress,
+                        lastLogonDate: user.lastLogonDate,
+                        createdAt: user.createdAt,
+                        updatedAt: user.updatedAt,
                         token: newToken
                     }
                 });
@@ -85,14 +92,14 @@ exports.loginUser = async (req, res) => {
             else {
                 return res.status(200).json({
                     success: false,
-                    message: 'Hatalı şifre'
+                    message: 'Hatalı şifre.'
                 });
             }
         }
         else {
             return res.status(200).json({
                 success: false,
-                message: 'Böyle bir kullanıcı mevcut değil'
+                message: 'Böyle bir kullanıcı mevcut değil.'
             });
         }
     } catch (error) {
@@ -104,6 +111,6 @@ exports.loginUser = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
     return res.status(200).json({
         success: false,
-        message: 'Hatalı şifre'
+        message: 'Hatalı şifre.'
     });
 };
