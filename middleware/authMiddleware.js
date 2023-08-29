@@ -7,17 +7,24 @@ exports.verifyToken = async (req, res, next) => {
     if (!userToken) {
         return res.status(403).json({
             "success": false,
-            "message": "Kimlik doğrulama için bir token gerekli"
+            "message": "Kimlik doğrulama için bir token gerekli."
         });
     }
     try {
         const verifyToken = jwt.verify(userToken, process.env.JWT_SECRET);
-        req.user = await userService.getUserById(verifyToken.payload.id);
+        const reqUser = await userService.getUserById(verifyToken.payload.id);
+        if (!reqUser) {
+            return res.status(401).json({
+                "success": false,
+                "message": "Yetkisiz işlem!"
+            });
+        }
+        req.user = reqUser;
     } catch (err) {
         console.log(err);
         return res.status(401).json({
             "success": false,
-            "message": "Token Geçersiz"
+            "message": "Token geçersiz."
         });
     }
     return next();
