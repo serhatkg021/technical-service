@@ -5,7 +5,7 @@ const customerSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    surName: {
+    surname: {
         type: String,
         required: true,
     },
@@ -18,9 +18,26 @@ const customerSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+    },
+    createdUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
+    lastUpdatedUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null,
+        ref: "User",
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
-},
-    { timestamps: true }
+}
 );
 
 const customer = mongoose.model("Customer", customerSchema);
