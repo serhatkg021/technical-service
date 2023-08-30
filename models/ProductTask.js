@@ -15,6 +15,16 @@ const productTaskSchema = mongoose.Schema({
         required: true,
         default: false
     },
+    createdUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
+    lastUpdatedUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null,
+        ref: "User",
+    }
 },
     { timestamps: true }
 );

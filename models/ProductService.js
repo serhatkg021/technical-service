@@ -20,6 +20,16 @@ const productServiceSchema = mongoose.Schema({
         required: true,
         ref: "ServiceStatus",
     },
+    createdUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
+    lastUpdatedUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null,
+        ref: "User",
+    }
 },
     { timestamps: true }
 );

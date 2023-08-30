@@ -13,6 +13,16 @@ const serviceStatusEventSchema = mongoose.Schema({
     mailContent: {
         type: String,
         required: true,
+    },
+    createdUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
+    lastUpdatedUserId: {
+        type: mongoose.Schema.Types.ObjectId,
+        default: null,
+        ref: "User",
     }
 },
     { timestamps: true }
