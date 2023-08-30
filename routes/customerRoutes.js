@@ -11,21 +11,21 @@ customerRoute.route('/').post(authMiddleware.verifyToken, customerController.cre
 
 customerRoute.route('/').get(authMiddleware.verifyToken, customerController.getAllCustomers);
 
-customerRoute.route('/:customerid').get(
+customerRoute.route('/:id').get(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     customerMiddleware.getCustomerCheck,
     customerController.getCustomerById
 );
 
-customerRoute.route('/:customerid').put(
+customerRoute.route('/:id').put(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     customerMiddleware.getCustomerCheck,
     customerController.updateCustomerById
 );
 
-customerRoute.route('/:customerid').delete(
+customerRoute.route('/:id').delete(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     customerMiddleware.getCustomerCheck,

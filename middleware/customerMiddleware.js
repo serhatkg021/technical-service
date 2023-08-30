@@ -1,7 +1,7 @@
 const customerService = require('../services/customerService');
 
 exports.getCustomerCheck = async (req, res, next) => {
-    const getCustomer = await customerService.getCustomerById(req.params.customerid);
+    const getCustomer = await customerService.getCustomerById(req.params.id);
     if (!getCustomer) {
         return res.status(200).json({
             success: false,

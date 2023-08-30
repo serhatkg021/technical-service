@@ -63,7 +63,7 @@ exports.getAllCustomers = async (req, res) => {
 }
 
 exports.getCustomerById = async (req, res) => {
-    const customerId = req.params.customerid;
+    const customerId = req.params.id;
 
     try {
         const getCustomer = await customerService.getCustomerById(customerId);
@@ -81,7 +81,7 @@ exports.getCustomerById = async (req, res) => {
 }
 
 exports.updateCustomerById = async (req, res) => {
-    const customerId = req.params.customerid;
+    const customerId = req.params.id;
     const { name, surname, phone, email } = req.body;
 
     if (!name && !surname && !phone && !email)
@@ -101,7 +101,7 @@ exports.updateCustomerById = async (req, res) => {
             });
         }
 
-        if (checkPhoneCustomer && checkEmailCustomer._id != customerId) {
+        if (checkPhoneCustomer && checkPhoneCustomer._id != customerId) {
             return res.status(409).json({
                 success: false,
                 message: 'Bu telefon numarası ile zaten bir müşteri kayıtlı.'
@@ -125,7 +125,7 @@ exports.updateCustomerById = async (req, res) => {
 }
 
 exports.deleteCustomerById = async (req, res) => {
-    const customerId = req.params.customerid
+    const customerId = req.params.id
     try {
         const deletedCustomer = await customerService.deleteCustomerById(customerId);
         res.status(200).json({
