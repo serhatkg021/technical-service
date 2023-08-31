@@ -8,6 +8,8 @@ dotenv.config();
 
 const userRoute = require('./routes/userRoutes');
 const customerRoute = require('./routes/customerRoutes');
+const productTypeRoute = require('./routes/productTypeRoutes');
+const productBrandRoute = require('./routes/productBrandRoutes');
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use(cookieParser());
 
 app.use("/api/user", userRoute);
 app.use("/api/customer", customerRoute);
+app.use("/api/product-type", productTypeRoute);
+app.use("/api/product-brand", productBrandRoute);
 
 app.use(express.static(path.join(__dirname, "./client/build/")));
 
