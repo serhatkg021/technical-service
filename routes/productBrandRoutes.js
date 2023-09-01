@@ -11,21 +11,21 @@ productBrandRoute.route('/').post(authMiddleware.verifyToken, productBrandContro
 
 productBrandRoute.route('/').get(authMiddleware.verifyToken, productBrandController.getAllProductBrands);
 
-productBrandRoute.route('/:id').get(
+productBrandRoute.route('/:brand_id').get(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     productBrandMiddleware.getProductBrandCheck,
     productBrandController.getProductBrandById
 );
 
-productBrandRoute.route('/:id').put(
+productBrandRoute.route('/:brand_id').put(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     productBrandMiddleware.getProductBrandCheck,
     productBrandController.updateProductBrandById
 );
 
-productBrandRoute.route('/:id').delete(
+productBrandRoute.route('/:brand_id').delete(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     productBrandMiddleware.getProductBrandCheck,

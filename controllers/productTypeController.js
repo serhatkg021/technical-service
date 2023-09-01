@@ -53,7 +53,7 @@ exports.getAllProductTypes = async (req, res) => {
 }
 
 exports.getProductTypeById = async (req, res) => {
-    const productTypeId = req.params.id;
+    const productTypeId = req.params.type_id;
 
     try {
         const getProductType = await productTypeService.getProductTypeById(productTypeId);
@@ -71,7 +71,7 @@ exports.getProductTypeById = async (req, res) => {
 }
 
 exports.updateProductTypeById = async (req, res) => {
-    const productTypeId = req.params.id;
+    const productTypeId = req.params.type_id;
     const { name } = req.body;
 
     if (!name)
@@ -107,7 +107,7 @@ exports.updateProductTypeById = async (req, res) => {
 }
 
 exports.deleteProductTypeById = async (req, res) => {
-    const productTypeId = req.params.id
+    const productTypeId = req.params.type_id;
     try {
         const deletedProductType = await productTypeService.deleteProductTypeById(productTypeId);
         res.status(200).json({

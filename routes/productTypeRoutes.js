@@ -11,21 +11,21 @@ productTypeRoute.route('/').post(authMiddleware.verifyToken, productTypeControll
 
 productTypeRoute.route('/').get(authMiddleware.verifyToken, productTypeController.getAllProductTypes);
 
-productTypeRoute.route('/:id').get(
+productTypeRoute.route('/:type_id').get(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     productTypeMiddleware.getProductTypeCheck,
     productTypeController.getProductTypeById
 );
 
-productTypeRoute.route('/:id').put(
+productTypeRoute.route('/:type_id').put(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     productTypeMiddleware.getProductTypeCheck,
     productTypeController.updateProductTypeById
 );
 
-productTypeRoute.route('/:id').delete(
+productTypeRoute.route('/:type_id').delete(
     authMiddleware.verifyToken,
     validateMiddleware.isValidObjectId,
     productTypeMiddleware.getProductTypeCheck,

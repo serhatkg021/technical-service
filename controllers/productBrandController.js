@@ -53,7 +53,7 @@ exports.getAllProductBrands = async (req, res) => {
 }
 
 exports.getProductBrandById = async (req, res) => {
-    const productBrandId = req.params.id;
+    const productBrandId = req.params.brand_id;
 
     try {
         const getProductBrand = await productBrandService.getProductBrandById(productBrandId);
@@ -71,7 +71,7 @@ exports.getProductBrandById = async (req, res) => {
 }
 
 exports.updateProductBrandById = async (req, res) => {
-    const productBrandId = req.params.id;
+    const productBrandId = req.params.brand_id;
     const { name } = req.body;
 
     if (!name)
@@ -107,7 +107,7 @@ exports.updateProductBrandById = async (req, res) => {
 }
 
 exports.deleteProductBrandById = async (req, res) => {
-    const productBrandId = req.params.id
+    const productBrandId = req.params.brand_id;
     try {
         const deletedProductBrand = await productBrandService.deleteProductBrandById(productBrandId);
         res.status(200).json({

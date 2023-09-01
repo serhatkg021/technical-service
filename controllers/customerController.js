@@ -63,7 +63,7 @@ exports.getAllCustomers = async (req, res) => {
 }
 
 exports.getCustomerById = async (req, res) => {
-    const customerId = req.params.id;
+    const customerId = req.params.customer_id;
 
     try {
         const getCustomer = await customerService.getCustomerById(customerId);
@@ -81,7 +81,7 @@ exports.getCustomerById = async (req, res) => {
 }
 
 exports.updateCustomerById = async (req, res) => {
-    const customerId = req.params.id;
+    const customerId = req.params.customer_id;
     const { name, surname, phone, email } = req.body;
 
     if (!name && !surname && !phone && !email)
@@ -125,7 +125,7 @@ exports.updateCustomerById = async (req, res) => {
 }
 
 exports.deleteCustomerById = async (req, res) => {
-    const customerId = req.params.id
+    const customerId = req.params.customer_id;
     try {
         const deletedCustomer = await customerService.deleteCustomerById(customerId);
         res.status(200).json({
