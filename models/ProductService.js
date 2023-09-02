@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const productServiceSchema = mongoose.Schema({
+    serviceCode: {
+        type: String,
+        required: true,
+    },
     productId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -14,11 +18,6 @@ const productServiceSchema = mongoose.Schema({
     comment: {
         type: String,
         required: true,
-    },
-    serviceStatusId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "ServiceStatus",
     },
     createdUserId: {
         type: mongoose.Schema.Types.ObjectId,
