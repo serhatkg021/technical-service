@@ -10,7 +10,7 @@ const productTaskSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    status: {
+    isComplate: {
         type: Boolean,
         required: true,
         default: false
