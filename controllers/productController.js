@@ -113,16 +113,16 @@ exports.getAllProductsByTypeAndBrandId = async (req, res) => {
     const brandId = req.params.brand_id;
 
     try {
-        const getProduct = await productService.getAllProductsByTypeAndBrandId(typeId, brandId);
+        const getProducts = await productService.getAllProductsByTypeAndBrandId(typeId, brandId);
         return res.status(200).json({
             success: true,
             message: `Sistemdeki belirtilen türe ve markaya kayıtlı bütün ürünler listelendi.`,
-            data: getProduct
+            data: getProducts
         });
     } catch (error) {
         res.status(422).json({
             success: false,
-            message: `${typeId} tür ve ${brandId} kimlik id'lerine sahip ürün listelenirken şu hata meydana geldi : -  ${error}`
+            message: `${typeId} tür ve ${brandId} marka kimlik id'lerine sahip ürün listelenirken şu hata meydana geldi : -  ${error}`
         });
     }
 }

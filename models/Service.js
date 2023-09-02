@@ -17,7 +17,7 @@ const serviceSchema = mongoose.Schema({
     },
     comment: {
         type: String,
-        required: true,
+        required: false,
     },
     createdUserId: {
         type: mongoose.Schema.Types.ObjectId,
