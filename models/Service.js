@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productServiceSchema = mongoose.Schema({
+const serviceSchema = mongoose.Schema({
     serviceCode: {
         type: String,
         required: true,
@@ -33,6 +33,6 @@ const productServiceSchema = mongoose.Schema({
     { timestamps: true }
 );
 
-const productService = mongoose.model("ProductService", productServiceSchema);
+const service = mongoose.model("Service", serviceSchema);
 
-module.exports = productService;
+module.exports = service;
