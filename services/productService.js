@@ -1,7 +1,7 @@
 const ProductModel = require('../models/Product');
 
 exports.getAllProducts = async () => {
-    return await ProductModel.find();
+    return await ProductModel.find().populate('typeId brandId');
 }
 
 exports.createProduct = async (product) => {
@@ -9,23 +9,23 @@ exports.createProduct = async (product) => {
 }
 
 exports.getProductById = async (id) => {
-    return await ProductModel.findById(id);
+    return await ProductModel.findById(id).populate('typeId brandId');
 }
 
 exports.getAllProductsByTypeId = async (typeId) => {
-    return await ProductModel.find({ typeId: typeId });
+    return await ProductModel.find({ typeId: typeId }).populate('typeId brandId');
 }
 
 exports.getAllProductsByBrandId = async (brandId) => {
-    return await ProductModel.find({ brandId: brandId });
+    return await ProductModel.find({ brandId: brandId }).populate('typeId brandId');
 }
 
 exports.getAllProductsByTypeAndBrandId = async (typeId, brandId) => {
-    return await ProductModel.find({ $and: [{ typeId: typeId }, { brandId: brandId }] });
+    return await ProductModel.find({ $and: [{ typeId: typeId }, { brandId: brandId }] }).populate('typeId brandId');
 }
 
 exports.getProductByName = async (productName) => {
-    return await ProductModel.findOne({ name: productName }).exec();
+    return await ProductModel.findOne({ name: productName }).populate('typeId brandId').exec();
 }
 
 exports.updateProductById = async (id, product) => {

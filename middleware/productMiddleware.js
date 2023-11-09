@@ -12,7 +12,7 @@ exports.getProductCheck = async (req, res, next) => {
 }
 
 exports.getProductCheckBody = async (req, res, next) => {
-    const getProduct = await productService.getProductById(req.params.productId);
+    const getProduct = await productService.getProductById(req.body.productId);
     if (!getProduct) {
         return res.status(200).json({
             success: false,
