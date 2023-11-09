@@ -11,6 +11,8 @@ const customerRoute = require('./routes/customerRoutes');
 const productTypeRoute = require('./routes/productTypeRoutes');
 const productBrandRoute = require('./routes/productBrandRoutes');
 const productRoute = require('./routes/productRoutes');
+const serviceRoute = require('./routes/serviceRoutes');
+
 const app = express();
 
 app.set('trust proxy', true);
@@ -24,6 +26,7 @@ app.use("/api/customer", customerRoute);
 app.use("/api/product-type", productTypeRoute);
 app.use("/api/product-brand", productBrandRoute);
 app.use("/api/product", productRoute);
+app.use("/api/service", serviceRoute);
 
 app.use(express.static(path.join(__dirname, "./client/build/")));
 
